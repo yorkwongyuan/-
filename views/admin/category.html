@@ -1,0 +1,41 @@
+{% extends 'layout.html' %} {%block main%}
+<ol class="breadcrumb">
+    <li>
+        <a href="/admin">管理首页</a>
+    </li>
+    <li>
+        <span>分类首页</span>
+    </li>
+</ol>
+
+<h3>分类首页</h3>
+
+<table class="table table-hover table-striped">
+    <tr>
+        <th>ID</th>
+        <th>分类名</th>
+        <th>操作</th>
+    </tr>
+
+    {% for categoryList in categoryLists%}
+    <tr>
+        <td>{{categoryList._id.toString()}}</td>
+        <td>{{categoryList.name}}</td>
+        <td>
+            <a href="/admin/category/edit?id={{categoryList._id.toString()}}">
+                修改
+            </a>
+            <a href="/admin/category/del?id={{categoryList._id.toString()}}">
+                删除
+            </a>
+        </td>
+    </tr>
+    {% endfor %}
+</table>
+
+{% if pages > 1%}
+
+{% include 'page.html' %}
+
+{% endif %}
+{%endblock%}

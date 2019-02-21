@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>首页</title>
+    <link rel="stylesheet" href="root/main.css" type="text/css">
+</head>
+<script src="root/js/ajax.js"></script>
+<script src="root/js/index.js"></script>
+
+<body>
+    <div id="root">
+        <nav>
+            <!-- 如果category为空，则首页高亮 -->
+            {% if category == ''%}
+                <a href="/" class="selected">首页</a>
+            <!-- 反之无高亮 -->
+            {% else %}
+                <a href="/" class="">首页</a>
+            {% endif %}
+            
+            {% for cate in categories %}
+                {% if cate.id == category %}
+                    <a href="/?category={{cate.id}}" class="selected">
+                        {{cate.name}}
+                    </a>
+                {% else %}
+                    <a href="/?category={{cate.id}}" class="">
+                        {{cate.name}}
+                    </a>
+                {% endif %}
+            {% endfor %}
+        </nav>
+        {% block main %}
+
+        {% endblock %}
+        <div id="right-sider">
+            {%if userinfo._id%}
+            <div id="userinfo">
+                <h1>用户信息</h1>
+                {% if userinfo.isAdmin %}
+                <span class="username">你好,管理员！</span>
+                <a href="/admin">进入管理</a>
+                {% else %}
+                <span class="username">你好,{{userinfo.username}}！</span>
+                {% endif %}
+                <button onclick="logout()">退出</button>
+            </div>
+            {% else %}
+            <div id="register">
+                <div class="title">注册</div>
+                <input type="text" name="username">
+                <input type="password" name="password">
+                <input type="password" name="repassword">
+                <div class="btns">
+                    <button class="register_btn" onclick="register()">注册</button>
+                    <button class="toggle" onclick="toLogin()">前去登录</button>
+                </div>
+
+            </div>
+            <div id="login" class="hide">
+                <div class="title">登录</div>
+                <input type="text" name="username">
+                <input type="password" name="password">
+                <button class="login_btn" onclick="login()">登录</button>
+                <button class="toggle" onclick="toRegister()">前去注册</button>
+            </div>
+            {% endif %}
+            <p class="warn"></p>
+            <p class="tips hide">你好,{{userinfo.username}},欢迎来到我的博客</p>
+        </div>
+
+</body>
+
+</html>

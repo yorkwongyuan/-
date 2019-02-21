@@ -1,0 +1,40 @@
+{% extends 'layout.html'%} {% block main %}
+<main>
+    <h1>{{content.title}}</h1>
+    <p>
+        作者:
+        <span>{{content.author.username}}</span>
+        时间:
+        <span>{{content.addTime|date('Y年m月d日h:i:s')}}</span>
+        阅读:
+        <span>{{content.views}}</span>
+        评论:
+        <span class="commentsCount">{{content.comments.length}}</span>
+    </p>
+    <div>
+        <p>{{content.description}}</p>
+    </div>
+    <div>
+        {{content.content}}
+    </div>
+    <div id="comments">
+        {% if userinfo._id %}
+        <div>
+            <div>
+                <span>评论区</span>
+                <i class="commentsCount">一共{{content.comments.length}}条评论</i>
+            </div>
+            <textarea name="" id="" cols="30" rows="10"></textarea>
+            <button onclick="submitComments(event)" data-id="{{content._id.toString()}}">提交</button>
+        </div>
+        {% else %}
+        <button>您还没有登录，请先登录</button>
+        {% endif %}
+
+        <div id="commentsLists">
+            <!-- 列表内容 -->
+        </div>
+    </div>
+</main>
+<script src="root/js/comments.js"></script> 
+{% endblock %}

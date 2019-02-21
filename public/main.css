@@ -1,0 +1,43 @@
+body{
+  background: white;
+}
+
+input,button{
+  outline:none;
+}
+#root{
+  max-width: 1314px;
+  margin:0 auto;
+}
+main{
+  display:inline-block;
+}
+.commentsCount{
+  
+}
+.title{
+  text-align:center;
+  width:100%;
+}
+#right-sider{
+  float:right;
+  width:250px;
+  margin-top: 40px;
+}
+
+#right-sider input{
+  width:100%;
+  margin-bottom:12px;
+}
+
+.hide{
+  display: none;
+}
+
+.warn{
+  color:red;
+}
+
+.tips{
+  color: blue;
+}
